@@ -1,11 +1,11 @@
-public class ArrayDeque <T> {
+public class ArrayDeque<T> implements Deque<T> {
 
     private T[] items; 
     private int size;
     private int nextFirstIndex; 
     private int nextLastIndex;  
     private int defaultLength = 3;
-
+    
     public ArrayDeque() {
         items = (T[]) new Object[defaultLength];
         size = 0;
@@ -58,6 +58,7 @@ public class ArrayDeque <T> {
 
     /* Adds an item of type T to the front of the deque. 
        take constant time, except during resizing operations. */
+    @Override
     public void addFirst(T item) {
         if (size == items.length) {
             resizeLarger();
@@ -69,6 +70,7 @@ public class ArrayDeque <T> {
 
     /* Adds an item of type T to the back of the deque. 
        take constant time, except during resizing operations. */
+    @Override
     public void addLast(T item) {
         if (size == items.length) {
             resizeLarger();
@@ -78,19 +80,15 @@ public class ArrayDeque <T> {
         size += 1;
     }
 
-    /* Returns true if deque is empty, false otherwise. */
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
     /* Returns the number of items in the deque. */
+    @Override
     public int size() {
         return size;
     }
 
     /* Prints the items in the deque from first to last, separated by a space.
        Once all the items have been printed, print out a new line. */
-
+    @Override   
     public void printDeque() {
         String res = "";
         int firstIndex = correctIndex(nextFirstIndex + 1);
@@ -106,6 +104,7 @@ public class ArrayDeque <T> {
     /* Removes and returns the item at the front of the deque.
        If no such item exists, returns null. 
        take constant time, except during resizing operations. */
+    @Override
     public T removeFirst() {
         if (size == 0) {
             return null;
@@ -118,14 +117,15 @@ public class ArrayDeque <T> {
         items[oldFirstIndex] = null;
         nextFirstIndex = oldFirstIndex;
         size -= 1;
-        System.out.println(items.length);
-        System.out.println(size);
+        // System.out.println(items.length);
+        // System.out.println(size);
         return temp;
     }
 
     /* Removes and returns the item at the back of the deque.
        If no such item exists, returns null.
        take constant time, except during resizing operations. */
+    @Override
     public T removeLast() {
         if (size == 0) {
             return null;
@@ -138,23 +138,24 @@ public class ArrayDeque <T> {
         items[oldLastIndex] = null;
         nextLastIndex = oldLastIndex;
         size -= 1;
-        System.out.println(items.length);
-        System.out.println(size);
+        // System.out.println(items.length);
+        // System.out.println(size);
         return temp;
     }
 
     /* Gets the item at the given index, where 0 is the front,
        1 is the next item, and so forth. If no such item exists,
        returns null. Must not alter the deque!*/
+    @Override
     public T get(int index) {
         if (index + 1 > size) {
             return null;
         }
         return items[correctIndex(nextFirstIndex + 1 + index)];
     }
-
+    
     public static void main(String[] args) {
-        ArrayDeque<Integer> I = new ArrayDeque<>();
+        Deque<Integer> I = new ArrayDeque<>();
         System.out.println(" ***** start from here ***** ");
         System.out.println("Create an empty ArrayDeque 'I'");
         System.out.println("Is I empty? " + I.isEmpty());
@@ -213,7 +214,7 @@ public class ArrayDeque <T> {
         System.out.println("Is I empty? " + I.isEmpty());
 
         System.out.println(" ======= Try different type ======= ");
-        ArrayDeque<String> S = new ArrayDeque<>();
+        Deque<String> S = new ArrayDeque<>();
         System.out.println("Create an empty ArrayDeque 'S'");
         System.out.println("Is S empty? " + S.isEmpty());
         System.out.println("S add b, c, d, e");
