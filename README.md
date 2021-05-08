@@ -6,8 +6,8 @@ This program simulates the motion of planets according to Newton's law of gravit
 
 ### Features
 
-* Modeled and visualized planetary trajectory with Newton's law of gravitation in Java and StdDraw.
-* Read in data and implement variable declaration, constructor, functional calling, loops, order of operations to calculate force among planets and simulate their interaction.
+* Developed program to calculate force and acceleration according to Newton’s Law of Universal Gravitation.
+* Created an animation to visualize planetary trajectory with StdDraw class.
 
 ### Requirements
 
